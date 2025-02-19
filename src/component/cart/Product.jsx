@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Product = ({product:{id,name,price,items,photo},increment,decrement,totalForOneProduct}) => {
+const Product = ({product:{id,name,price,items,photo},increment,decrement,totalForOneProduct,deleteProduct}) => {
   return (
 
     <div>
@@ -13,8 +13,9 @@ const Product = ({product:{id,name,price,items,photo},increment,decrement,totalF
                 <h2 className="card-title">Name:{name}</h2>
                 <p>Price:{price}</p>
                 <p>Count:{items}</p>
-                <button className="btn btn-primary" onClick={()=>{increment(id)}}>Add to cart</button>
-                <button disabled={items==0} className="btn btn-warning" onClick={()=>{decrement(id)} }>Delete from cart</button>       
+                <button className="btn btn-primary" onClick={()=>{increment(id)}}>+</button>
+                <button disabled={items==0} className="btn btn-warning" onClick={()=>{decrement(id)} }>-</button>     
+                <button  className="btn btn-warning" onClick={()=>{deleteProduct(id)} }>Delete </button>         
                 <p>total:{totalForOneProduct(id)}</p> 
             </div>
             </div> :

@@ -76,7 +76,11 @@ function App() {
   };
 
   const reset = () => {
-    setProducts(addedProducts);
+    
+    setProducts(products.map((product)=>{
+      product.items=1;
+      return product;
+    }));
   };
 
   const empty = (res = true) => {
@@ -87,6 +91,17 @@ function App() {
       })
     );
   };
+
+  const deleteProduct=(id)=>{
+    setProducts(
+      products.map((product) => {
+        if (product.id == id) {
+          product.items = 0;
+        }
+        return product;
+      })
+    );
+  }
 
   return (
     <div className={`${theme ? 'bg-black' : 'bg-white'}`}>
@@ -106,6 +121,7 @@ function App() {
             decrement={decrement}
             totalForOneProduct={totalForOneProduct}
             totalForAllProducts={totalForAllProducts}
+            deleteProduct={deleteProduct}
           />
         ) : (
           <div className="text-6xl mt-4 text-red-500 text-center">Empty</div>
