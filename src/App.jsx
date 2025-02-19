@@ -108,7 +108,7 @@ function App() {
             totalForAllProducts={totalForAllProducts}
           />
         ) : (
-          <div className="text-9xl text-red-500 text-center">Empty</div>
+          <div className="text-6xl mt-4 text-red-500 text-center">Empty</div>
         )}
       </div>
     </div>
