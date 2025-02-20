@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Header from './component/Header';
+import Header from './component/Header/Header';
 import Iteams from './component/cart/Iteams';
 
 function App() {
@@ -21,12 +21,10 @@ function App() {
 
   const [theme, setTheme] = useState(false);
 
-  // الفانكشن الى هتظبطلى الايتمس الى موجوده
   const inCart = () => {
     return products.filter((product) => product.items >= 1);
   };
 
-  // الفانكشن بتاعت الانكريمينت الايتمس لكل عنصر
   const increment = (id) => {
     setProducts(
       products.map((product) => {
@@ -57,13 +55,11 @@ function App() {
     );
   };
 
-  // دا هناهاخد الid بتاع برودكت هجيبه وبعدين هحسبه وارجعه
   const totalForOneProduct = (id) => {
     const pro = products.find((pro) => pro.id == id);
     return pro.price * pro.items;
   };
 
-  // هجيب بتاع البرودكت كلها
   const totalForAllProducts = () => {
     return inCart().reduce((total, product) => {
       return total + totalForOneProduct(product.id);
@@ -104,8 +100,8 @@ function App() {
   }
 
   return (
-    <div className={`${theme ? 'bg-black' : 'bg-white'}`}>
-      <div>
+    <div className={`h-[100vh] ${theme ? 'bg-black' : 'bg-white'}`}>
+      <div className={`flex flex-col gap-4 h-full` }>
         <Header
           inCart={inCart}
           increment={increment}
@@ -113,6 +109,7 @@ function App() {
           reset={reset}
           empty={empty}
           theme={theme}
+          addedProducts={addedProducts}
         />
         {inCart().length > 0 ? (
           <Iteams
@@ -122,9 +119,10 @@ function App() {
             totalForOneProduct={totalForOneProduct}
             totalForAllProducts={totalForAllProducts}
             deleteProduct={deleteProduct}
+            theme={theme}
           />
         ) : (
-          <div className="text-6xl mt-4 text-red-500 text-center">Empty</div>
+          <div  className="text-6xl mt-4 pb-3 text-red-500 text-center">Empty</div>
         )}
       </div>
     </div>

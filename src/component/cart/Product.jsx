@@ -1,30 +1,31 @@
-import React from 'react'
+import React from 'react';
 
-const Product = ({product:{id,name,price,items,photo},increment,decrement,totalForOneProduct,deleteProduct}) => {
+const Product = ({ product, increment, decrement, totalForOneProduct, deleteProduct, theme }) => {
+  if (product.items <= 0) return null;
   return (
+    <div className={`card w-full shadow-xl  ${theme ? 'bg-gradient-to-r from-[#ff512f] to-[#dd2476]' : 'bg-white'}`}>
+      <div className="card-body flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex-1 text-center md:text-left">
+          <h2 className="card-title text-lg md:text-xl">{product.name}</h2>
+          <p className="text-md md:text-lg">Price: ${product.price}</p>
+          <p className="text-md md:text-lg">Count: {product.items}</p>
+        </div>
 
-    <div>
-        
-               
-           { 
-            (items>0)?
-            <div className=  "card  w-full shadow-xl">
-            <div className="card-body flex flex-row items-center justify-between">
-                <h2 className="card-title">Name:{name}</h2>
-                <p>Price:{price}</p>
-                <p>Count:{items}</p>
-                <button className="btn btn-primary" onClick={()=>{increment(id)}}>+</button>
-                <button disabled={items==0} className="btn btn-warning" onClick={()=>{decrement(id)} }>-</button>     
-                <button  className="btn btn-warning" onClick={()=>{deleteProduct(id)} }>Delete </button>         
-                <p>total:{totalForOneProduct(id)}</p> 
-            </div>
-            </div> :
-            <div></div>
-        }
-    
+        <div className="flex flex-col md:flex-row items-center gap-2 w-full md:w-auto">
+          <div className="flex items-center gap-2">
+            <button className="btn btn-primary btn-sm md:btn-md" onClick={() => increment(product.id)}>+</button>
+            <button className="btn btn-warning btn-sm md:btn-md" disabled={product.items === 0} onClick={() => decrement(product.id)}>-</button>
+          </div>
+          
+          <button className="btn btn-error btn-sm md:btn-md" onClick={() => deleteProduct(product.id)}>Delete</button>
+          
+          <p className="text-lg md:text-xl font-semibold ">
+            Total: ${totalForOneProduct(product.id)}
+          </p>
+        </div>
+      </div>
     </div>
-    
-  )
+  );
 }
 
-export default Product
+export default Product;
