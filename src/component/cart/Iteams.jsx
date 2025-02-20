@@ -3,8 +3,8 @@ import Product from './Product';
 
 const Iteams = ({products,increment,decrement,totalForOneProduct,totalForAllProducts,deleteProduct,theme}) => {
   return (
-    <div className={`text-center px-4 mt-12 ${theme ? 'bg-black' : 'bg-white'} ` }>
-      <div className='grid   gap-4 md:gap-6 '>
+    <div className={`text-center px-4  ${theme ? 'bg-black' : 'bg-white'} ` }>
+      <div className='grid gap-4 md:gap-6 '>
         {products.map((product) => (
           <Product key={product.id} product={product} increment={increment}  
                    decrement={decrement} totalForOneProduct={totalForOneProduct} 
