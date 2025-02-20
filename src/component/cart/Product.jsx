@@ -3,7 +3,7 @@ import React from 'react';
 const Product = ({ product, increment, decrement, totalForOneProduct, deleteProduct, theme }) => {
   if (product.items <= 0) return null;
   return (
-    <div className={`card w-full shadow-xl  ${theme ? 'bg-gradient-to-r from-[#ff512f] to-[#dd2476]' : 'bg-white'}`}>
+    <div className={`card w-full shadow-xl  ${theme ? 'bg-gradient-to-r from-[#ff512f] to-[#dd2476]' : 'bg-white'} mt-12`}>
       <div className="card-body flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex-1 text-center md:text-left">
           <h2 className="card-title text-lg md:text-xl">{product.name}</h2>

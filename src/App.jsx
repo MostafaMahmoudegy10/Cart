@@ -29,6 +29,8 @@ function App() {
     setProducts(
       products.map((product) => {
         if (product.id == id) {
+          console.log(id); 
+          
           if (product.items < 1) {
             inCart();
           }
